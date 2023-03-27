@@ -74,8 +74,8 @@
 
   " use 2 spaces for indentination
   set expandtab shiftwidth=2 tabstop=2 softtabstop=2
-  " round indents to multiple of shiftwidth when using shift (< and >)
-  "   commands
+  " round indents to multiple of shiftwidth
+  "   when using shift (< and >) commands
   set shiftround
 
   " be more verbose about file  content

@@ -132,6 +132,21 @@ return require('packer').startup {
       tag = '*',
       requires = {'nvim-lua/plenary.nvim'}
     }
+    use {'akinsho/bufferline.nvim',
+      tag = "v3.*",
+      after = 'catppuccin',
+      requires = 'nvim-tree/nvim-web-devicons',
+      config = function ()
+        require('bufferline').setup {
+          options = {
+            show_buffer_close_icons = false,
+          },
+          highlights = require(
+            "catppuccin.groups.integrations.bufferline"
+          ).get()
+        }
+      end
+    }
 
   end,
   config = { git = {  -- part of the fix for old git version

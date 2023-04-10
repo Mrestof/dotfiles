@@ -36,6 +36,58 @@ return require('packer').startup {
         require("todo-comments").setup()
       end
     }
+    use {'akinsho/bufferline.nvim',
+      tag = "v3.*",
+      after = 'catppuccin',
+      requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+      config = function ()
+        require('bufferline').setup {
+          options = {
+            show_buffer_close_icons = false,
+          },
+          highlights = require(
+            "catppuccin.groups.integrations.bufferline"
+          ).get()
+        }
+      end
+    }
+    use { 'nvim-lualine/lualine.nvim',
+      requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+      config = function()
+        require('lualine').setup {
+          options = {
+            padding = 1,
+            icons_enabled = false,
+            theme = 'catppuccin',
+            component_separators = '│',
+            section_separators = '',
+            globalstatus = false,  -- but can be enabled
+            refresh = {
+              statusline = 100,
+              tabline = 1000,
+              winbar = 1000,
+            }
+          },
+          sections = {
+            lualine_a = {'mode'},
+            lualine_b = {'branch', 'diff', 'diagnostics'},
+            lualine_c = {'filename'},
+            lualine_x = {'encoding', 'fileformat', 'filetype'},
+            lualine_y = {'filesize', 'progress'},
+            lualine_z = {'location'}
+          },
+          inactive_sections = {
+            lualine_c = {'filename'},
+            lualine_x = {'location'},
+          },
+          tabline = {},  -- TODO: think of replacing the bufferline with this
+          winbar = {},   -- <---  or this
+          inactive_winbar = {},
+          extensions = {'fugitive', 'quickfix'}
+        }
+      end
+    }
+
 
     -- text editing tools
     use { "kylechui/nvim-surround",
@@ -76,6 +128,7 @@ return require('packer').startup {
         'saadparwaiz1/cmp_luasnip'
       },
     }
+    -- git
     use { 'lewis6991/gitsigns.nvim',
       config = function()
         require('gitsigns').setup {
@@ -124,28 +177,16 @@ return require('packer').startup {
         }
       end,
     }
+    use { 'tpope/vim-fugitive',
+      requires = 'tpope/vim-rhubarb'  -- github integrations
+    }
     -- almost code
     use 'lervag/vimtex'
 
     -- file management tools
     use { 'nvim-telescope/telescope.nvim',
-      tag = '*',
+      branch = '0.1.x',
       requires = {'nvim-lua/plenary.nvim'}
-    }
-    use {'akinsho/bufferline.nvim',
-      tag = "v3.*",
-      after = 'catppuccin',
-      requires = 'nvim-tree/nvim-web-devicons',
-      config = function ()
-        require('bufferline').setup {
-          options = {
-            show_buffer_close_icons = false,
-          },
-          highlights = require(
-            "catppuccin.groups.integrations.bufferline"
-          ).get()
-        }
-      end
     }
 
   end,

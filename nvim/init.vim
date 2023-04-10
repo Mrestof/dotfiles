@@ -1,3 +1,5 @@
+" TODO: load lua configs and scripts from repo, not from user's configs
+"
 " First priority: {{{
   " make sure everyone knows the leader!
   let mapleader = "\<Space>"

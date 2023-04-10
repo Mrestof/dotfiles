@@ -11,6 +11,18 @@ vim.keymap.set('n', '<leader>fg', function()
 end, {})
 
 require('telescope').setup{
+  defaults = {
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--follow",  -- custom argument to follow symlinks
+    }
+  },
   pickers = {
     find_files = {
       follow=true,  -- follow symlinks

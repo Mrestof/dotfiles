@@ -65,7 +65,25 @@ local servers = {
     },
   },
   clangd = {},
-  pyright = {}
+  pyright = {},
+  vimls = {
+    initializationOptions = {
+      isNeovim = true, -- is neovim, default false
+      indexes = {
+        runtimepath = true,      -- if index runtimepath's vim files this will effect the suggest
+        gap = 100,               -- index time gap between next file
+        count = 3,               -- count of files index at the same time
+      },
+      suggest = {
+        fromVimruntime = true,   -- completionItems from vimruntime's vim files
+        -- completionItems from runtimepath's vim files,
+        --  if this is true that fromVimruntime is true
+        fromRuntimepath = false
+      }
+    },
+    filetypes = {"vim"}
+  },
+  texlab = {}
 }
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers

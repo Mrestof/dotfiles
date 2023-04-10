@@ -1,0 +1,19 @@
+# vi: filetype=zsh
+
+[ -f ~/.zshrc ] && . ~/.zshrc
+
+if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 2 ]; then
+  # fix Intelliji failure to startup
+  #   (caused by bug in Java "https://github.com/swaywm/sway/issues/595")
+  export _JAVA_AWT_WM_NONREPARENTING=1
+  # set qt theme style
+  export QT_STYLE_OVERRIDE=adwaita-dark
+  # .gtkrc-2.0 fix for pidgin
+  export GTK2_RC_FILES=/usr/share/themes/Materia-dark/gtk-2.0/gtkrc
+  # start the wm
+  SWAY_LOG_FN="$HOME/.local/log/sway"
+  if [[ -f $SWAY_LOG_FN ]]; then
+    mv $SWAY_LOG_FN ${SWAY_LOG_FN}.old
+  fi
+  exec sway --verbose &> $SWAY_LOG_FN
+fi

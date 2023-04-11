@@ -2,7 +2,7 @@
 
 [ -f ~/.zshrc ] && . ~/.zshrc
 
-if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 2 ]; then
+if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   # fix Intelliji failure to startup
   #   (caused by bug in Java "https://github.com/swaywm/sway/issues/595")
   export _JAVA_AWT_WM_NONREPARENTING=1

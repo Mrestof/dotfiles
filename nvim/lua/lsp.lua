@@ -41,6 +41,8 @@ local on_attach = function(_, bufnr)
   end, '[W]orkspace [L]ist Folders')
 
   nmap('<leader>e', vim.diagnostic.open_float, 'Show lin[e] diagnostics')
+  nmap(']e', vim.diagnostic.goto_next, 'Go to next diagnostic message')
+  nmap('[e', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)

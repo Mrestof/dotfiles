@@ -9,6 +9,9 @@ vim.keymap.set('n', '<leader>fG', tele_builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fg', function()
   tele_builtin.live_grep({grep_open_files=true})
 end, {})
+vim.keymap.set('n', '<leader>fw', function()
+  tele_builtin.grep_string({word_match='-w'})  -- find exact word matches
+end, {})
 
 require('telescope').setup{
   defaults = {

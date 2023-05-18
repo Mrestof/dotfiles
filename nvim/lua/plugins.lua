@@ -114,6 +114,11 @@ return require('packer').startup {
         }
       end,
     }
+    use { 'nvim-treesitter/nvim-treesitter-context',
+      config = function ()
+        require('treesitter-context').setup()
+      end
+    }
     use { 'neovim/nvim-lspconfig',
       requires = {
         -- automatically install LSPs to stdpath for neovim

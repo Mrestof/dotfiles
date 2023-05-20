@@ -102,3 +102,7 @@
 " Mouse {{{
   set mouse=a
 " }}}
+" GUI {{{
+  " set this explicitly for nvim-colorizer
+  set termguicolors
+" }}}

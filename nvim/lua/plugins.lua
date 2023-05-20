@@ -87,6 +87,13 @@ return require('packer').startup {
         }
       end
     }
+    use { 'NvChad/nvim-colorizer.lua',
+      config = function()
+        require('colorizer').setup {
+          user_default_options = {RRGGBBAA = true}
+        }
+      end
+    }
 
 
     -- text editing tools

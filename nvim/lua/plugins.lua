@@ -123,7 +123,9 @@ return require('packer').startup {
     }
     use { 'nvim-treesitter/nvim-treesitter-context',
       config = function ()
-        require('treesitter-context').setup()
+        require('treesitter-context').setup {
+          mode='topline'
+        }
       end
     }
     use { 'neovim/nvim-lspconfig',

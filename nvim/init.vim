@@ -22,7 +22,7 @@
 
   nmap <Tab> <Cmd>bnext<CR>
   nmap <S-Tab> <Cmd>bprevious<CR>
-  nmap <Bslash> <Cmd>:nohlsearch<CR>
+  nmap <Bslash> <Cmd>nohlsearch<CR>
 
   " dmitmel dotfiles: {{{
     " <C-i> is treated as <tab> in terminals, so the original function of <C-i>
@@ -56,6 +56,9 @@
   nmap <C-j> <C-w>j
   nmap <C-k> <C-w>k
   nmap <C-l> <C-w>l
+
+  nmap <leader>su <Cmd>call SwitchUI()<cr>
+  nmap <leader>sn <Cmd>set invrelativenumber<cr>
 " }}}
 
 " Auto: {{{
@@ -63,6 +66,9 @@
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   augroup end
+" }}}
+" Abbreviations: {{{
+  iabbrev <expr> dts strftime("%Y-%m-%d")
 " }}}
 
 " Visual: {{{
@@ -94,6 +100,25 @@
   " - my preferred wigth: 80
   " - general preferred width: 'textwidth'+1
   set colorcolumn=+1,81
+
+  " Functions: {{{
+  " TODO: don't copy paste option setting
+  function SwitchUI() abort
+    if ! exists('s:ui_enabled') | let s:ui_enabled = 1 | endif
+    if s:ui_enabled == 1
+      highlight Cursor blend=100
+      set guicursor+=a:Cursor/lCursor
+      set nolist norelativenumber nocursorline nocursorcolumn
+      echo 'minimilize UI'
+    else
+      highlight Cursor blend=0
+      set guicursor-=a:Cursor/lCursor
+      set list   relativenumber   cursorline   cursorcolumn
+      echo 'maximalize UI'
+    endif
+    let s:ui_enabled = 1 - s:ui_enabled  " switch between 0 and 1
+  endfunction
+  " }}}
 " }}}
 " Search {{{
   set ignorecase

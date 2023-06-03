@@ -6,6 +6,8 @@ if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   # fix Intelliji failure to startup
   #   (caused by bug in Java "https://github.com/swaywm/sway/issues/595")
   export _JAVA_AWT_WM_NONREPARENTING=1
+  # set Thunderbird to start natively on wayland
+  export MOZ_ENABLE_WAYLAND=1
   # set qt theme style
   export QT_STYLE_OVERRIDE=adwaita-dark
   # .gtkrc-2.0 fix for pidgin

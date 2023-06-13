@@ -56,7 +56,6 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   bashls = {},
-  rome = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },

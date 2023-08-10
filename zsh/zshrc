@@ -29,9 +29,17 @@ export CLICOLOR=1
 alias ip='ip --color=auto'
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
-export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export BEMENU_OPTS="-ci -l 16 -W 0.3 -p 'exec:' -P '>' -w --scrollbar always \
 --scf '#f84b8c' --hf '#f84b8c' --tf '#f84b8c'"
+
+# bat {{{:
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
+# }}}
 # }}}
 
 # `pass` configs: {{{
@@ -43,7 +51,7 @@ export PASSWORD_STORE_GENERATED_LENGTH=1000
 export PATH=$HOME/.local/bin:$PATH
 
 export EDITOR=/usr/bin/nvim
-export TERMINAL_EMULATOR=/usr/bin/foot
+export TERMINAL_EMULATOR=/bin/alacritty
 export WWW_HOME=https://lite.duckduckgo.com/lite
 export GNUPGHOME=$HOME/.local/share/gnupg
 
@@ -67,6 +75,12 @@ alias l='ls -lh'
 alias la='l -a'
 alias dnd='dragon-drop -x'
 alias auracle='auracle --sort=votes'
+
+function swap()
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE "$2"
+}
 
 function dsf() {
   diff -u $1 $2 |diff-so-fancy

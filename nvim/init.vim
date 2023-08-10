@@ -1,3 +1,4 @@
+" TODO: add and configure bbye plugin
 " TODO: load lua configs and scripts from repo, not from user's configs
 "
 " First priority: {{{

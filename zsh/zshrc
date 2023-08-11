@@ -1,5 +1,7 @@
 # TODO:
 #   high prio:
+#   - fix nethack path (no xdg on some systems)
+#   - fix bat configs (batcat instead of bat on some systems)
 #   - better categorize the exported variables and aliases
 #   - apply program settings only when it is appropriate
 #     - general configs only if the program is present on the system
@@ -50,7 +52,7 @@ export PASSWORD_STORE_GENERATED_LENGTH=1000
 
 export PATH=$HOME/.local/bin:$PATH
 
-export EDITOR=/usr/bin/nvim
+export EDITOR='/bin/env nvim'
 export TERMINAL_EMULATOR=/bin/alacritty
 export WWW_HOME=https://lite.duckduckgo.com/lite
 export GNUPGHOME=$HOME/.local/share/gnupg

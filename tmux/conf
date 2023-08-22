@@ -12,6 +12,9 @@ bind C-o send-prefix -2
 
 set -g history-limit 5000                 # boost history
 
+# enable mouse
+set -g mouse on
+
 # -- display -------------------------------------------------------------------
 
 setw -g automatic-rename on   # rename window to reflect current program

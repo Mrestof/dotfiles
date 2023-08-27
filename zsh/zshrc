@@ -77,6 +77,7 @@ alias l='ls -lh'
 alias la='l -a'
 alias dnd='dragon-drop -x'
 alias auracle='auracle --sort=votes'
+alias sv='source .venv/bin/activate'
 
 function swap()
 {

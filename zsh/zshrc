@@ -54,6 +54,7 @@ export PATH=$HOME/.local/bin:$PATH
 
 export EDITOR='/bin/env nvim'
 export TERMINAL_EMULATOR=/bin/alacritty
+export TERMCMD=$TERMINAL_EMULATOR
 export WWW_HOME=https://lite.duckduckgo.com/lite
 export GNUPGHOME=$HOME/.local/share/gnupg
 
@@ -72,7 +73,7 @@ alias wlc='wl-copy'
 alias bli="bluetoothctl"
 
 alias df='df -h'
-alias ls='exa --group --classify --group-directories-first --git'
+alias ls='eza --group --classify --group-directories-first --git'
 alias l='ls -lh'
 alias la='l -a'
 alias dnd='dragon-drop -x'
@@ -108,8 +109,8 @@ autojump_path='/usr/share/autojump/autojump.zsh'
 ## the function itself
 j() {
     local preview_cmd="ls {2..}"
-    if command -v exa &> /dev/null; then
-        preview_cmd="exa -l {2}"
+    if command -v eza &> /dev/null; then
+        preview_cmd="eza -l {2}"
     fi
 
     if [[ $# -eq 0 ]]; then

@@ -2091,9 +2091,10 @@ c.tabs.position = 'left'
 # enter fullscreen mode
 config.bind(
     'xx',
+    # TODO: fix tabs being partly hidden after swtiching back and forwards
     ' ;; '.join((
-        'config-cycle --temp statusbar.show always never',
-        'config-cycle --temp tabs.show always never',
+        'config-cycle --temp statusbar.show never always',
+        'config-cycle --temp tabs.show never always',
     )),
 )
 

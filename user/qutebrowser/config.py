@@ -531,47 +531,23 @@ c.colors.webpage.bg = 'black'
 # c.colors.webpage.darkmode.contrast = 0.0
 
 ## Render all web contents using a dark theme. Example configurations
-## from Chromium's `chrome://flags`:  - "With simple HSL/CIELAB/RGB-based
-## inversion": Set   `colors.webpage.darkmode.algorithm` accordingly.  -
-## "With selective image inversion": Set
-## `colors.webpage.darkmode.policy.images` to `smart`.  - "With selective
-## inversion of non-image elements": Set
-## `colors.webpage.darkmode.threshold.text` to 150 and
-## `colors.webpage.darkmode.threshold.background` to 205.  - "With
-## selective inversion of everything": Combines the two variants   above.
-## - "With increased text contrast": Set
-## `colors.webpage.darkmode.increase_text_contrast` (QtWebEngine 6.3+)
+## from Chromium's `chrome://flags`: - "With simple HSL/CIELAB/RGB-based
+## inversion": Set   `colors.webpage.darkmode.algorithm` accordingly, and
+## set `colors.webpage.darkmode.policy.images` to `never`.  - "With
+## selective image inversion": qutebrowser default settings.
 ## Type: Bool
 # c.colors.webpage.darkmode.enabled = False
 c.colors.webpage.darkmode.enabled = True
 
-## Render all colors as grayscale. This only has an effect when
-## `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` or
-## `brightness-rgb`.
-## Type: Bool
-# c.colors.webpage.darkmode.grayscale.all = False
-
-## Desaturation factor for images in dark mode. If set to 0, images are
-## left as-is. If set to 1, images are completely grayscale. Values
-## between 0 and 1 desaturate the colors accordingly.
-## Type: Float
-# c.colors.webpage.darkmode.grayscale.images = 0.0
-
-## Increase text contrast by drawing an outline of the uninverted color.
-## Type: Bool
-# c.colors.webpage.darkmode.increase_text_contrast = False
-c.colors.webpage.darkmode.increase_text_contrast = True
-
-## Which images to apply dark mode to. With QtWebEngine 5.15.0, this
-## setting can cause frequent renderer process crashes due to a
-## https://codereview.qt-project.org/c/qt/qtwebengine-
-## chromium/+/304211[bug in Qt].
+## Which images to apply dark mode to.
 ## Type: String
 ## Valid values:
 ##   - always: Apply dark mode filter to all images.
 ##   - never: Never apply dark mode filter to any images.
 ##   - smart: Apply dark mode based on image content. Not available with Qt 5.15.0.
+##   - smart-simple: On QtWebEngine 6.6, use a simpler algorithm for smart mode (based on numbers of colors and transparency), rather than an ML-based model. Same as 'smart' on older QtWebEnigne versions.
 # c.colors.webpage.darkmode.policy.images = 'smart'
+c.colors.webpage.darkmode.policy.images = 'smart-simple'
 
 ## Which pages to apply dark mode to. The underlying Chromium setting has
 ## been removed in QtWebEngine 5.15.3, thus this setting is ignored
@@ -589,7 +565,8 @@ c.colors.webpage.darkmode.increase_text_contrast = True
 ## elements with brightness above this threshold will be inverted, and
 ## below it will be left as in the original, non-dark-mode page. Set to
 ## 256 to never invert the color or to 0 to always invert it. Note: This
-## behavior is the opposite of `colors.webpage.darkmode.threshold.text`!
+## behavior is the opposite of
+## `colors.webpage.darkmode.threshold.foreground`!
 ## Type: Int
 # c.colors.webpage.darkmode.threshold.background = 0
 c.colors.webpage.darkmode.threshold.background = 128
@@ -599,7 +576,7 @@ c.colors.webpage.darkmode.threshold.background = 128
 ## left as in the original, non-dark-mode page. Set to 256 to always
 ## invert text color or to 0 to never invert text color.
 ## Type: Int
-# c.colors.webpage.darkmode.threshold.text = 256
+# c.colors.webpage.darkmode.threshold.foreground = 256
 
 ## Value to use for `prefers-color-scheme:` for websites. The "light"
 ## value is only available with QtWebEngine 5.15.2+. On older versions,
@@ -807,7 +784,9 @@ for url in adblock_excluded_sites:
 # c.content.cache.size = None
 
 ## Allow websites to read canvas elements. Note this is needed for some
-## websites to work properly.
+## websites to work properly. On QtWebEngine < 6.6, this setting requires
+## a restart and does not support URL patterns, only the global setting
+## is applied.
 ## Type: Bool
 # c.content.canvas_reading = True
 
@@ -963,6 +942,20 @@ for url in js_clipboard_trusted_sites:
 ## Enable JavaScript.
 ## Type: Bool
 # c.content.javascript.enabled = True
+
+## Enables the legacy touch event feature. This affects JS APIs such as:
+## - ontouch* members on window, document, Element -
+## document.createTouch, document.createTouchList -
+## document.createEvent("TouchEvent") Newer Chromium versions have those
+## disabled by default:
+## https://bugs.chromium.org/p/chromium/issues/detail?id=392584
+## https://groups.google.com/a/chromium.org/g/blink-dev/c/KV6kqDJpYiE
+## Type: String
+## Valid values:
+##   - always: Legacy touch events are always enabled. This might cause some websites to assume a mobile device.
+##   - auto: Legacy touch events are only enabled if a touch screen was detected on startup.
+##   - never: Legacy touch events are always disabled.
+# c.content.javascript.legacy_touch_events = 'never'
 
 ## Log levels to use for JavaScript console logging messages. When a
 ## JavaScript message with the level given in the dictionary key is

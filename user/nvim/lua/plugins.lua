@@ -95,7 +95,6 @@ return require('packer').startup {
       end
     }
 
-
     -- text editing tools
     use { "kylechui/nvim-surround",
       tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -202,6 +201,9 @@ return require('packer').startup {
       branch = '0.1.x',
       requires = {'nvim-lua/plenary.nvim'}
     }
+
+    -- usability tools
+    use 'moll/vim-bbye'
 
   end,
   config = { git = {  -- part of the fix for old git version

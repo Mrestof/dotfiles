@@ -47,13 +47,13 @@ help() {
 # `pass` configs: {{{
 export PASSWORD_STORE_DIR=$HOME/.local/share/password-store
 export PASSWORD_STORE_CLIP_TIME=5
-export PASSWORD_STORE_GENERATED_LENGTH=1000
+export PASSWORD_STORE_GENERATED_LENGTH=40
 # }}}
 
 export PATH=$HOME/.local/bin:$PATH
 
 export EDITOR='/bin/env nvim'
-export TERMINAL_EMULATOR=/bin/alacritty
+export TERMINAL_EMULATOR=/bin/foot
 export TERMCMD=$TERMINAL_EMULATOR
 export WWW_HOME=https://lite.duckduckgo.com/lite
 export GNUPGHOME=$HOME/.local/share/gnupg
@@ -78,7 +78,6 @@ alias l='ls -lh'
 alias la='l -a'
 alias dnd='dragon-drop -x'
 alias auracle='auracle --sort=votes'
-alias sv='source .venv/bin/activate'
 
 function swap()
 {
@@ -88,6 +87,19 @@ function swap()
 
 function dsf() {
   diff -u $1 $2 |diff-so-fancy
+}
+
+find-up () {
+  local path=$(pwd)
+  while [[ "$path" != "" && ! -e "$path/$1" ]]; do
+    path=${path%/*}
+  done
+  echo "$path"
+}
+
+sv () {
+  local closest_venv_loc=$(find-up .venv)
+  source $closest_venv_loc/.venv/bin/activate
 }
 
 # fzf: {{{

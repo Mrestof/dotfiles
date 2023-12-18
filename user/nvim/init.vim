@@ -21,6 +21,7 @@
 " Binds: {{{
   nmap <leader>sv <Cmd>source $MYVIMRC<CR>
 
+  nmap <BS> <Cmd>Bdelete<CR>
   nmap <Tab> <Cmd>bnext<CR>
   nmap <S-Tab> <Cmd>bprevious<CR>
   nmap <Bslash> <Cmd>nohlsearch<CR>

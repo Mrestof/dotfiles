@@ -10,8 +10,10 @@ if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   export MOZ_ENABLE_WAYLAND=1
   # set qt theme style
   export QT_STYLE_OVERRIDE=adwaita-dark
+  # set gtk theme style
+  export GTK_THEME='Adwaita:dark'
   # .gtkrc-2.0 fix for pidgin
-  export GTK2_RC_FILES=/usr/share/themes/Materia-dark/gtk-2.0/gtkrc
+  export GTK2_RC_FILES='/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc'
   # start the wm
   SWAY_LOG_FN="$HOME/.local/log/sway"
   if [[ -f $SWAY_LOG_FN ]]; then

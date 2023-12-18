@@ -1,0 +1,4 @@
+#!/bin/sh
+
+img_url=$QUTE_URL
+curl "$img_url" |swayimg -

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+python /home/mrestof/notes/war/apartment/parsers/main.py <$QUTE_HTML >>/home/mrestof/notes/war/apartment/main-list

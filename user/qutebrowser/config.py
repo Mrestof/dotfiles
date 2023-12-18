@@ -2233,31 +2233,46 @@ c.url.searchengines = {
     'DEFAULT': 'https://duckduckgo.com/?q={}',
     #'DEFAULT': 'http://localhost:8888/search?q={}',
 
+    # search engines
     'g': 'https://www.google.com/search?q={}',
 
+    # linux
+    'aw': 'https://wiki.archlinux.org/index.php?search={}',
+    'ap': 'https://archlinux.org/packages/?q={}',
     'aur': 'https://aur.archlinux.org/packages?K={}&O=0&SB=v&SO=d',
-    'yt': 'https://www.youtube.com/results?search_query={}',
-    'camdic': 'https://dictionary.cambridge.org/dictionary/english/{}',
-    'tpb': 'https://thepiratebay.org/search.php?q={}',
+    'ow': 'https://openwrt.org/?q={}&do=search',
+    'im': 'https://duckduckgo.com/?q=imagemagick+{}',
 
-    'gm': 'https://www.google.com/maps/search/{}',
-    'osm': 'https://www.openstreetmap.org/search?query={}',
-
+    # programming
+    ## meta
+    'gh': 'https://github.com/search?q={}',
+    ## python
     'py': 'https://docs.python.org/3/search.html?q={}',
     'pypi': 'https://pypi.org/search/?q={}',
     'rp': 'https://realpython.com/search?q={}',
-    'cython_wiki': 'https://cython.readthedocs.io/en/stable/search.html?q={}',
+    'pd': 'https://pandas.pydata.org/pandas-docs/stable/search.html?q={}',
     'pytb': 'https://docs.python-telegram-bot.org/en/stable/search.html?q={}',
+    'cython_wiki': 'https://cython.readthedocs.io/en/stable/search.html?q={}',
+    ## web
     'mdn': 'https://developer.mozilla.org/en-US/search?q={}',
-
-    'aw': 'https://wiki.archlinux.org/index.php?search={}',
-    'im': 'https://duckduckgo.com/?q=imagemagick+{}',
-    'gh': 'https://github.com/search?q={}',
-    'ow': 'https://openwrt.org/?q={}&do=search',
+    ## sql
     'mysqltut': 'https://www.mysqltutorial.org/?s={}',
 
+    # maps
+    # maybe add fullscreen map: https://www.sammyshp.de/fsmap
+    'gm': 'https://www.google.com/maps/search/{}',
+    'osm': 'https://www.openstreetmap.org/search?query={}',
+
+    # content
+    'yt': 'https://www.youtube.com/results?search_query={}',
+    'tpb': 'https://thepiratebay.org/search.php?q={}',
+
+    # games
     'nh': 'https://nethackwiki.com/mediawiki/index.php?search={}',
     'isaac': 'https://bindingofisaacrebirth.fandom.com/wiki/Special:Search?query={}',
+
+    # other
+    'camdic': 'https://dictionary.cambridge.org/dictionary/english/{}',
 }
 
 ## Page(s) to open at the start.

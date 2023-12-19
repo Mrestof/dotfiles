@@ -52,7 +52,7 @@ export PASSWORD_STORE_GENERATED_LENGTH=40
 
 export PATH=$HOME/.local/bin:$PATH
 
-export EDITOR='/bin/env nvim'
+export EDITOR='nvim'
 export TERMINAL_EMULATOR=/bin/foot
 export TERMCMD=$TERMINAL_EMULATOR
 export WWW_HOME=https://lite.duckduckgo.com/lite

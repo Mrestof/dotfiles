@@ -2156,9 +2156,7 @@ c.tabs.title.format = '{audio}{index}:{current_title}'
 ## like for `tabs.title.format` are defined.
 ## Type: FormatString
 # c.tabs.title.format_pinned = '{index}'
-# Due to vertical order of the tabs, use free space for specifying title.
-# The amount of pinned tabs is often small, so no need in indexing them.
-c.tabs.title.format_pinned = '{current_title}'
+c.tabs.title.format_pinned = '{audio}{index}:{current_title}'
 
 ## Show tooltips on tabs. Note this setting only affects windows opened
 ## after it has been set.

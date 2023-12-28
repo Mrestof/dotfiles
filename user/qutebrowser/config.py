@@ -690,12 +690,15 @@ c.colors.webpage.preferred_color_scheme = 'dark'
 # c.content.autoplay = True
 
 # disable autoplay mainly for youtube to not start videos when I open multiple
-#   tabs with it, leave an exception to autoplay episodes one by one on netflix;
+#   tabs with it, leave some exceptions to autoplay episodes one by one on
+#   websites I use;
 c.content.autoplay = False
-config.set(
-    'content.autoplay',
-    True,
-    'www.netflix.com')
+autoplay_allowed_sites = (
+    'www.netflix.com',
+    'realpython.com',
+)
+for url in autoplay_allowed_sites:
+    config.set('content.autoplay', True, url)
 
 ## List of URLs to ABP-style adblocking rulesets.  Only used when Brave's
 ## ABP-style adblocker is used (see `content.blocking.method`).  You can

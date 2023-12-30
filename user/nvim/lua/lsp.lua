@@ -82,7 +82,8 @@ local servers = {
     },
     filetypes = {"vim"}
   },
-  texlab = {}
+  texlab = {},
+  rust_analyzer = {},
 }
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers

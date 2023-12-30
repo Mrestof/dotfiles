@@ -2133,7 +2133,7 @@ config.bind(
 ##   - middle
 ##   - none
 # c.tabs.title.elide = 'right'
-c.tabs.title.elide = 'middle'
+c.tabs.title.elide = 'right'
 
 ## Format to use for the tab title. The following placeholders are
 ## defined:  * `{perc}`: Percentage as a string like `[10%]`. *

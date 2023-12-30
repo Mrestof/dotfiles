@@ -19,5 +19,5 @@ if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   if [[ -f $SWAY_LOG_FN ]]; then
     mv $SWAY_LOG_FN ${SWAY_LOG_FN}.old
   fi
-  exec sway --verbose &> $SWAY_LOG_FN
+  exec sway --unsupported-gpu --verbose &> $SWAY_LOG_FN
 fi

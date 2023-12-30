@@ -1,7 +1,7 @@
 # -- general -------------------------------------------------------------------
 
 #set -g default-terminal "screen-256color"
-set -g default-terminal "tmux-256color"
+#set -g default-terminal "tmux-256color"
 #set -g default-terminal "linux"
 
 set -s escape-time 10                     # faster command sequences
@@ -10,12 +10,15 @@ set -s focus-events on
 set -g prefix2 C-o
 bind C-o send-prefix -2
 
-set -g history-limit 5000                 # boost history
+set -g history-limit 50000                 # boost history
 
 # enable mouse
 set -g mouse on
 
 # -- display -------------------------------------------------------------------
+
+# Enable RGB colour if running in foot(1)
+set-option -sa terminal-overrides ",foot:Tc"
 
 setw -g automatic-rename on   # rename window to reflect current program
 set -g renumber-windows on    # renumber windows when a window is closed

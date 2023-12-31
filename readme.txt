@@ -8,6 +8,8 @@ for sys:
 0. the following assumed to be set up by now (all from arch install guide):
   - network
   - disk partitioning, mappings like lvm and/or encryption
+  optional:
+    - ssd blocksize optimization
 1. chroot in the new system
 1. install essential packages during setup (from archiso or alike)
 1. add dotfiles with personal configs

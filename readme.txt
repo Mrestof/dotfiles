@@ -1,0 +1,114 @@
+meta:
+  sys configs should be set up by creating links in propper places in the system
+    pointing to the appropriate file in /root/.dotfiles/sys
+  user configs should be set up in the same way, but pointing to appropriate
+    files in ~<username>/.dotfiles/user
+
+for sys:
+0. the following assumed to be set up by now (all from arch install guide):
+  - network
+  - disk partitioning, mappings like lvm and/or encryption
+1. chroot in the new system
+1. install essential packages during setup (from archiso or alike)
+1. add dotfiles with personal configs
+[d]1. add personal edited keymap for linux console, edit following files:
+  '/usr/local/share/kbd/keymaps/us-personal.map'
+  '/etc/vconsole.conf'
+[d]1. pacman:
+  - add configs: '/etc/pacman.conf'
+  - update files database with `pacman -Fy`
+[d]1. add personal systemd logind conf for correct sleep behaviour:
+  '/etc/systemd/logind.conf.d/'
+[d]1. change skel:
+  - remove bash configs
+  [u:finish script]- create all home dirs and appropriate user-dirs file
+  - create '.local/log/'
+[u,d]1. add personal issue:
+  '/etc/issue'
+[ud]1. add all custom executables to '/usr/local/bin/'.
+1. create all needed users
+
+for users (root, mrestof):
+[ud]1. add all custom executables to '~/.local/bin/'.
+  - personal custom
+  - luke smith's statusbar tools and other bins
+  - external: wlprop, 0x0, etc...
+[u]1. add all custom shared files to '~/.local/share/'.
+  - luke smith's emoji file
+1. config tmux:
+  1. add personal configs to '~/.tmux.conf'
+[ud]1. config bluetooth:
+  1. add personal configs to ...
+[d]1. config sway:
+  1. add personal configs to '~/.config/sway/'
+[d]1. config dunst (notifications):
+  1. add personal configs to '~/.config/dunst/'
+1. config foot:
+  1. add personal configs to '~/.config/foot/'
+[?]1. config default monospace font, monocraft:
+  1. maybe create a package?
+  1. get the nerd patched release
+  1. install it system wide
+1. config neovim: [u: add changes from work system]
+  1. get package manager: 'https://github.com/wbthomason/packer.nvim'
+  2. add personal configs to '~/.config/nvim/'
+1. config qutebrowser:
+  1. add personal configs to '~/.config/qutebrowser/'
+  1. add personal userscripts to '~/.local/share/qutebrowser/'
+1. config zathura: [ud]
+  1. add personal configs to '...'
+1. config mpd, mpc and other clients: [ud]
+1. config keepassxc and it's integration with Freedesktop.org Secret Service:
+  1. add custom service at '~/.local/share/dbus-1/services/'
+    more info: 'https://wiki.archlinux.org/title/KeePass'
+[d]1. config mpris:
+  1. create and enable appropriate service
+    filepath: '~/.config/systemd/user/playerctld.service'
+    more info: 'https://wiki.archlinux.org/title/MPRIS'
+  2. download mpv extension for mpris
+
+
+pkgs I use: {{{
+  pkgs I need:
+    lvm2
+    base linux linux-firmware
+    intel-ucode sof-firmware
+    grub efibootmgr networkmanager git man-db man-pages openssh
+    base-devel devtools gdb
+    brightnessctl pactl
+    vi vim neovim moreutils entr tmux zsh zsh-completions fzf ripgrep bpython lynx archlinux-contrib pacman-contrib pkgstats reflector xdg-user-dirs progress ncdu tree translate-shell eza htop vifm ranger p7zip xz
+    openbsd-netcat openvpn networkmanager-openvpn rsync aria2 yt-dlp nmap speedtest-cli bluez bluez-utils
+    asciinema irssi
+    python-pudb
+    fatresize
+    imagemagick ffmpeg
+    bat duf btop
+    sway swaylock swaybg bemenu foot libnotify dunst jq slurp grim swappy wf-recorder wl-clipboard qutebrowser
+    pass keepassxc
+    gnome-themes-extra noto-fonts{,-emoji,-cjk}
+    vimiv nsxiv swayimg zathura mpv playerctl
+    gimp inkscape
+    libreoffice-still thunderbird firefox-developer-edition
+    telegram-desktop syncplay
+    spotify-launcher
+    gparted
+  pkgs from aur:
+    adwaita-qt5-git adwaita-qt6-git
+  pkgs direct dependencies:
+    required:
+      qutebrowser: qt{5,6}-wayland
+    optional:
+      qutebrowser: python-adblock
+      thunderbird: hunspell-en_us
+      pinentry: kwayland5
+      bpython: python-{urwid,jedi,watchdog}
+      mpv: mpv-mpris
+      slurp: otf-font-awesome
+      translate-shell: rlwrap
+      gparted: polkit, lxqt-policykit
+      syncplay: pyside2
+  pkgs some software often needs:
+    wget unzip npm zenity
+  pkgs for fun:
+    fastfetch
+}}}

@@ -11,41 +11,41 @@ for sys:
 1. chroot in the new system
 1. install essential packages during setup (from archiso or alike)
 1. add dotfiles with personal configs
-[d]1. add personal edited keymap for linux console, edit following files:
+1. add personal edited keymap for linux console, edit following files: [d]
   '/usr/local/share/kbd/keymaps/us-personal.map'
   '/etc/vconsole.conf'
-[d]1. pacman:
+1. pacman: [d]
   - add configs: '/etc/pacman.conf'
   - update files database with `pacman -Fy`
-[d]1. add personal systemd logind conf for correct sleep behaviour:
+1. add personal systemd logind conf for correct sleep behaviour: [d]
   '/etc/systemd/logind.conf.d/'
-[d]1. change skel:
+1. change skel: [d]
   - remove bash configs
-  [u:finish script]- create all home dirs and appropriate user-dirs file
+  - create all home dirs and appropriate user-dirs file [u:finish script]
   - create '.local/log/'
-[u,d]1. add personal issue:
+1. add personal issue: [u]
   '/etc/issue'
-[ud]1. add all custom executables to '/usr/local/bin/'.
+1. add all custom executables to '/usr/local/bin/'. [u]
 1. create all needed users
 
 for users (root, mrestof):
-[ud]1. add all custom executables to '~/.local/bin/'.
+1. add all custom executables to '~/.local/bin/'. [u]
   - personal custom
   - luke smith's statusbar tools and other bins
   - external: wlprop, 0x0, etc...
-[u]1. add all custom shared files to '~/.local/share/'.
+1. add all custom shared files to '~/.local/share/'. [u]
   - luke smith's emoji file
 1. config tmux:
   1. add personal configs to '~/.tmux.conf'
-[ud]1. config bluetooth:
+1. config bluetooth: [u]
   1. add personal configs to ...
-[d]1. config sway:
+1. config sway: [d]
   1. add personal configs to '~/.config/sway/'
-[d]1. config dunst (notifications):
+1. config dunst (notifications): [d]
   1. add personal configs to '~/.config/dunst/'
 1. config foot:
   1. add personal configs to '~/.config/foot/'
-[?]1. config default monospace font, monocraft:
+1. config default monospace font, monocraft: [?]
   1. maybe create a package?
   1. get the nerd patched release
   1. install it system wide
@@ -55,13 +55,13 @@ for users (root, mrestof):
 1. config qutebrowser:
   1. add personal configs to '~/.config/qutebrowser/'
   1. add personal userscripts to '~/.local/share/qutebrowser/'
-1. config zathura: [ud]
+1. config zathura: [u]
   1. add personal configs to '...'
-1. config mpd, mpc and other clients: [ud]
+1. config mpd, mpc and other clients: [u]
 1. config keepassxc and it's integration with Freedesktop.org Secret Service:
   1. add custom service at '~/.local/share/dbus-1/services/'
     more info: 'https://wiki.archlinux.org/title/KeePass'
-[d]1. config mpris:
+1. config mpris: [d]
   1. create and enable appropriate service
     filepath: '~/.config/systemd/user/playerctld.service'
     more info: 'https://wiki.archlinux.org/title/MPRIS'

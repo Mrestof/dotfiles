@@ -13,7 +13,7 @@ for sys:
 1. chroot in the new system
 1. install essential packages during setup (from archiso or alike)
 1. add dotfiles with personal configs
-1. add personal edited keymap for linux console, edit following files: [d]
+1. add personal edited keymap for linux console, edit following files:
   '/usr/local/share/kbd/keymaps/us-personal.map'
   '/etc/vconsole.conf'
 1. pacman: [d]

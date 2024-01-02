@@ -19,7 +19,7 @@ for sys:
 1. pacman:
   - add configs: '/etc/pacman.conf'
   - update files database with `pacman -Fy`
-1. add personal systemd logind conf for correct sleep behaviour: [d]
+1. add personal systemd logind conf for correct sleep behaviour:
   '/etc/systemd/logind.conf.d/'
 1. change skel: [d]
   - remove bash configs

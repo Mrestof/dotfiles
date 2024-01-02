@@ -16,7 +16,7 @@ for sys:
 1. add personal edited keymap for linux console, edit following files:
   '/usr/local/share/kbd/keymaps/us-personal.map'
   '/etc/vconsole.conf'
-1. pacman: [d]
+1. pacman:
   - add configs: '/etc/pacman.conf'
   - update files database with `pacman -Fy`
 1. add personal systemd logind conf for correct sleep behaviour: [d]

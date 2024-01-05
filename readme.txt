@@ -28,6 +28,9 @@ for sys:
 1. add personal issue: [u]
   '/etc/issue'
 1. add all custom executables to '/usr/local/bin/'. [u]
+1. config zsh:
+  1. get grml-zsh and place it in '/etc/zsh/zshrc'
+    url: 'https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc'
 1. create all needed users
 
 for users (root, mrestof):
@@ -37,6 +40,8 @@ for users (root, mrestof):
   - external: wlprop, 0x0, etc...
 1. add all custom shared files to '~/.local/share/'. [u]
   - luke smith's emoji file
+1. config zsh:
+  1. source dotfiles from both '~/.zshrc' and '~/.zprofile'
 1. config tmux:
   1. add personal configs to '~/.tmux.conf'
 1. config bluetooth: [u]

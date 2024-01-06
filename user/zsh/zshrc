@@ -11,6 +11,8 @@
 #   low prio:
 #   - apply certain color configs only if a program is of supportedversion
 
+DOTROOT="${0:h:h:h}"
+
 # fix all sudo aliases
 alias sudo='sudo '
 
@@ -23,7 +25,7 @@ bindkey -v
 
 # nethack: {{{
 # TODO: integrate with dotfiles
-export NETHACKOPTIONS="@$(xdg-user-dir)/.config/nethack/nethackrc"
+export NETHACKOPTIONS="@${DOTROOT}/user/nethack/nethackrc"
 # }}}
 
 # colored output: {{{

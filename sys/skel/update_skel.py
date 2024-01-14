@@ -2,23 +2,23 @@
 from pathlib import PosixPath
 
 
-SKEL = PosixPath('/etc/skel')
 HOME = PosixPath.home()
-CONF = HOME / '.config'
-LOCAL = HOME / '.local'
+SKEL = PosixPath('/etc/skel')
+CONF = SKEL / PosixPath('.config')
+LOCAL = SKEL / PosixPath('.local')
 
 BASH_FILES = '.bashrc', '.bash_profile', '.bash_logout'
 
 UD_FILE = CONF / 'user-dirs.dirs'
 USER_DIRS = {
-    'XDG_MUSIC_DIR': HOME / 'musi',
-    'XDG_VIDEOS_DIR': HOME / 'vids',
-    'XDG_PICTURES_DIR': HOME / 'pics',
-    'XDG_DOWNLOAD_DIR': HOME / 'dwns',
-    'XDG_DOCUMENTS_DIR': HOME / 'docs',
-    'XDG_DESKTOP_DIR': HOME / 'docs/trash/xdg-defs/desktop',
-    'XDG_TEMPLATES_DIR': HOME / 'docs/trash/xdg-defs/templates',
-    'XDG_PUBLICSHARE_DIR': HOME / 'docs/trash/xdg-defs/publicshare',
+    'XDG_MUSIC_DIR': 'musi',
+    'XDG_VIDEOS_DIR': 'vids',
+    'XDG_PICTURES_DIR': 'pics',
+    'XDG_DOWNLOAD_DIR': 'dwns',
+    'XDG_DOCUMENTS_DIR': 'docs',
+    'XDG_DESKTOP_DIR': 'docs/trash/xdg-defs/desktop',
+    'XDG_TEMPLATES_DIR': 'docs/trash/xdg-defs/templates',
+    'XDG_PUBLICSHARE_DIR': 'docs/trash/xdg-defs/publicshare',
 }
 
 LOG_DIR = LOCAL / 'log'
@@ -33,12 +33,12 @@ def cut_bash() -> None:
 def mk_userdirs() -> None:
     for dir in USER_DIRS.values():
         skel_dir = SKEL / dir
-        print(skel_dir)
         skel_dir.mkdir(parents=True, exist_ok=True)
-    userdirs_content = (f'{key}="{path}"\n' for key, path in USER_DIRS.items())
     UD_FILE.parent.mkdir(parents=True, exist_ok=True)
     with UD_FILE.open('w') as udf:
-        udf.writelines(userdirs_content)
+        for key_name, path in USER_DIRS.items():
+            line = f'{key_name}="$HOME/{path}"\n'
+            udf.write(line)
 
 
 def main() -> int:

@@ -87,7 +87,7 @@ pkgs I use: {{{
     vi vim neovim moreutils entr tmux zsh zsh-completions fzf ripgrep bpython lynx archlinux-contrib pacman-contrib pkgstats reflector xdg-user-dirs progress ncdu tree translate-shell eza htop vifm ranger p7zip xz
     openbsd-netcat openvpn networkmanager-openvpn rsync aria2 yt-dlp nmap speedtest-cli bluez bluez-utils
     asciinema irssi
-    python-pudb
+    pyenv python-pudb
     fatresize
     imagemagick ffmpeg
     bat duf btop

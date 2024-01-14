@@ -22,10 +22,10 @@ for sys:
   - update files database with `pacman -Fy`
 1. add personal systemd logind conf for correct sleep behaviour:
   '/etc/systemd/logind.conf.d/'
-1. change skel: [d]
+1. change skel (auto):
   - remove bash configs
-  - create all home dirs and appropriate user-dirs file [u:finish script]
-  - create '.local/log/'
+  - create dir for user-level logs: '.local/log/'
+  - create all home dirs and appropriate user-dirs file
 1. add personal issue: [u]
   '/etc/issue'
 1. add all custom executables to '/usr/local/bin/'. [u]

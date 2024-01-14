@@ -1,6 +1,6 @@
 meta:
-  sys configs should be set up by creating links in propper places in the system
-    pointing to the appropriate file in /root/.dotfiles/sys
+  sys configs should be set up by creating links in propper places in the
+    system pointing to the appropriate file in /root/.dotfiles/sys
   user configs should be set up in the same way, but pointing to appropriate
     files in ~<username>/.dotfiles/user
 

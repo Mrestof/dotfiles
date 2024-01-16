@@ -28,7 +28,6 @@ for sys:
   - create all home dirs and appropriate user-dirs file
 1. add personal issue: [u]
   '/etc/issue'
-1. add all custom executables to '/usr/local/bin/'. [u]
 1. config zsh:
   1. get grml-zsh and place it in '/etc/zsh/zshrc'
     url: 'https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc'

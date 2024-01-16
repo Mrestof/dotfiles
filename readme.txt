@@ -43,29 +43,28 @@ for users (root, mrestof):
 1. config zsh:
   1. source dotfiles from both '~/.zshrc' and '~/.zprofile'
 1. config tmux:
-  1. add personal configs to '~/.tmux.conf'
+  1. source dotfiles from '~/.tmux.conf'
+1. config neovim:
+  1. get package manager: 'https://github.com/wbthomason/packer.nvim'
+  2. add personal configs to '~/.config/nvim/'
 1. config bluetooth: [u]
-  1. add personal configs to ...
+  1. install bluetooth: 'https://wiki.archlinux.org/title/Bluetooth'
+  2. add personal configs to ...
 1. config sway: [d]
   1. add personal configs to '~/.config/sway/'
-1. config dunst (notifications): [d]
-  1. add personal configs to '~/.config/dunst/'
 1. config foot:
   1. add personal configs to '~/.config/foot/'
-1. config default monospace font, monocraft: [?]
+1. config default monospace font, monocraft: [d]
   1. maybe create a package?
   1. get the nerd patched release
   1. install it system wide
-1. config neovim: [u: add changes from work system]
-  1. get package manager: 'https://github.com/wbthomason/packer.nvim'
-  2. add personal configs to '~/.config/nvim/'
 1. config qutebrowser:
   1. add personal configs to '~/.config/qutebrowser/'
   1. add personal userscripts to '~/.local/share/qutebrowser/'
 1. config zathura: [u]
   1. add personal configs to '...'
 1. config mpd, mpc and other clients: [u]
-1. config keepassxc and it's integration with Freedesktop.org Secret Service:
+1. config keepassxc & its integration with Freedesktop.org Secret Service: [d]
   1. add custom service at '~/.local/share/dbus-1/services/'
     more info: 'https://wiki.archlinux.org/title/KeePass'
 1. config mpris: [d]
@@ -73,6 +72,8 @@ for users (root, mrestof):
     filepath: '~/.config/systemd/user/playerctld.service'
     more info: 'https://wiki.archlinux.org/title/MPRIS'
   2. download mpv extension for mpris
+1. config dunst (notifications): [d]
+  1. add personal configs to '~/.config/dunst/'
 
 
 TODO:

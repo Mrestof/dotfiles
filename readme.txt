@@ -75,6 +75,18 @@ for users (root, mrestof):
   2. download mpv extension for mpris
 
 
+TODO:
+change:
+  keepassxc: use another tool, or fix behaviour of this one
+new:
+  unsure:
+    sound: setup, configs
+  user:
+    sway: configs
+    btop: configs
+    xgd: mimeapps
+
+
 pkgs I use: {{{
   pkgs I need:
     lvm2

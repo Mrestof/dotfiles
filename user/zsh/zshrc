@@ -10,7 +10,8 @@
 #   low prio:
 #   - apply certain color configs only if a program is of supportedversion
 
-DOTROOT="${0:h:h:h}"
+# root of dotfiles, wherever they may roam, use from other scripts if needed
+export DOTROOT="${0:h:h:h}"
 
 # fix all sudo aliases
 alias sudo='sudo '

@@ -38,7 +38,7 @@ for users (root, mrestof):
   - personal custom
   - luke smith's statusbar tools and other bins
   - external: wlprop, 0x0, etc...
-1. add all custom shared files to '~/.local/share/'. [u]
+1. all custom shared files are in dotfiles user share bin dir.
   - luke smith's emoji file
 1. config zsh:
   1. source dotfiles from both '~/.zshrc' and '~/.zprofile'

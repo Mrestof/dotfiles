@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# Author: Mrestof
+
+# some kind of bijective map here
+#code_to_layout[en]="English (US)"
+#code_to_layout[ru]="Russian"
+#code_to_layout[uk]="Ukrainian"
+#code_to_layout[English (US)]="en"
+#code_to_layout[Russian]="ru"
+#code_to_layout[Ukrainian]="uk"
+
+# eval this to remove the quotes from output command
+eval prev_layout="$(swaymsg -t get_inputs |jq '.[] | select(.identifier == "1:1:AT_Translated_Set_2_keyboard").xkb_active_layout_name')"
+echo $prev_layout
+if [[ $prev_layout == 'English (US)' ]]; then
+  prev_layout_index=0
+elif [[ $prev_layout == 'Russian' ]]; then
+  prev_layout_index=1
+elif [[ $prev_layout == 'Ukrainian' ]]; then
+  prev_layout_index=2
+fi
+echo $prev_layout_index
+
+if [[ $1 == 'en' ]]; then
+  swaymsg input 1:1:AT_Translated_Set_2_keyboard xkb_switch_layout 0
+elif [[ $1 == 'ru' ]]; then
+  swaymsg input 1:1:AT_Translated_Set_2_keyboard xkb_switch_layout 1
+elif [[ $1 == 'uk' ]]; then
+  swaymsg input 1:1:AT_Translated_Set_2_keyboard xkb_switch_layout 2
+fi
+
+choiceWord=$(bemenu -p "translate[$1:$2]:" </dev/null)
+
+if [[ -n $choiceWord ]]; then
+  translation=$(trans $1:$2 "$choiceWord" -indent 0 | tail -n 1 | sed 's/\\[22m$//g'| sed 's/^\\[1m//g')
+  # TODO: change language to the second one and only after that return to the initial one
+  CHOICE=$(echo $translation | sed -r 's/\\[22m, \\[1m/\n/g' | bemenu -p "trans:")
+  if [[ -n $CHOICE ]]; then
+    echo "$CHOICE" | wl-copy
+  else
+    CHOICE=${translation%\n*}
+  fi
+fi
+
+swaymsg input 1:1:AT_Translated_Set_2_keyboard xkb_switch_layout $prev_layout_index

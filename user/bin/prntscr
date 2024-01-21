@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Author: Mrestof
+
+mode=$1
+echo $mode
+
+if [[ $mode == 'simple' ]]; then
+  region=$(slurp)
+  echo $region
+  if [[ -z $region ]]; then
+    exit 10
+  fi
+  grim -g "$region" - |wl-copy
+elif [[ $mode == 'full' ]]; then
+  grim - |wl-copy
+elif [[ $mode == 'clip_edit' ]]; then
+  clip_type=$(wl-paste -l |head -n1)
+  fmt=$(basename $clip_type)
+  if [[ $fmt != 'png' && $fmt != 'x-qt-image' ]]; then
+    exit 12
+  fi
+  wl-paste |swappy -f - -o - |wl-copy
+fi

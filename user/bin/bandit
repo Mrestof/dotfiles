@@ -1,0 +1,4 @@
+#!/bin/env bash
+
+# first level is run by providing argument 0 and entering password "bandit0"
+ssh -p 2220 -o "SetEnv TERM=xterm-256color" bandit$1@bandit.labs.overthewire.org

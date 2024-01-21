@@ -51,7 +51,7 @@ export PASSWORD_STORE_CLIP_TIME=5
 export PASSWORD_STORE_GENERATED_LENGTH=40
 # }}}
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH="$HOME/.local/bin:$DOTROOT/user/bin:$PATH"
 
 export EDITOR='nvim'
 export TERMINAL_EMULATOR=/bin/foot

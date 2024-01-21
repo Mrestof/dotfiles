@@ -1,0 +1,16 @@
+#!/bin/env bash
+
+# TODO: remove repeated search
+
+music_dir=$(xdg-user-dir MUSIC)
+music_files=()
+#readarray -d '' music_files < <(find -L "$music_dir" -type f -printf '%f\0')
+readarray -d '' music_files < <(find -L "$music_dir" -type f)
+
+# TODO: make the search case ignored (-i doesn't work with cyrillic)
+music_filename=$(printf '%s\n' "${music_files[@]}" |bemenu -p'dnd-song:' -W0.5)
+echo $music_filename
+#music_fullpath=$(find -L $music_dir -name "$music_filename")
+#echo $music_fullpath
+
+dragon-drop --and-exit "$music_filename"

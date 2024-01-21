@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Author: Mrestof
+
+sessions=()
+
+for entry in $HOME/.local/share/qutebrowser/sessions/*
+do
+  basename=${entry##*/}
+  if [[ -f $entry ]] && [[ $basename != "_autosave.yml" ]]; then
+    sessions+=(${basename%.*})
+  fi
+done
+
+session_name=$(printf '%s\n' "${sessions[@]}" |bemenu -p 'qutebrowser:')
+
+if [[ -z $(ps -au $USER |grep qutebrowser) ]]; then
+  echo execute the qutebrowser with session $session_name
+  qutebrowser -r $session_name
+fi

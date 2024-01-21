@@ -34,7 +34,7 @@ for sys:
 1. create all needed users
 
 for users (root, mrestof):
-1. add all custom executables to '~/.local/bin/'. [u]
+1. all custom binaries are in dotfiles user bin dir, added to PATH with zshrc.
   - personal custom
   - luke smith's statusbar tools and other bins
   - external: wlprop, 0x0, etc...
@@ -52,6 +52,7 @@ for users (root, mrestof):
   2. add personal configs to ...
 1. config sway: [d]
   1. add personal configs to '~/.config/sway/'
+  1. use bins from dotfiles
 1. config foot:
   1. add personal configs to '~/.config/foot/'
 1. config default monospace font, monocraft: [d]

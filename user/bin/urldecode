@@ -1,0 +1,11 @@
+#!/usr/bin/env python3.11
+
+# Author: Mrestof
+
+import fileinput
+from urllib.parse import unquote
+
+for url in fileinput.input():
+    url_strip = url.strip()
+    url_decoded = unquote(url_strip)
+    print(url_decoded, end='')

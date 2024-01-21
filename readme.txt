@@ -55,8 +55,8 @@ for users (root, mrestof):
 1. config bluetooth: [u]
   1. install bluetooth: 'https://wiki.archlinux.org/title/Bluetooth'
   2. add personal configs to ...
-1. config sway: [d]
-  1. add personal configs to '~/.config/sway/'
+1. config sway:
+  1. add configs by adding include directive to '~/.config/sway/config' file
   1. use bins from dotfiles
 1. config foot:
   1. add personal configs to '~/.config/foot/'
@@ -87,6 +87,7 @@ change:
   keepassxc: use another tool, or fix behaviour of this one
 new:
   user:
+    sway: make a better config
     btop: configs
     xgd: mimeapps
 

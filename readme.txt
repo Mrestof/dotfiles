@@ -1,8 +1,8 @@
 meta:
   sys configs should be set up by creating links in propper places in the
-    system pointing to the appropriate file in /root/.dotfiles/sys
+    system pointing to the appropriate file in '/etc/.dotfiles/sys/'.
   user configs should be set up in the same way, but pointing to appropriate
-    files in ~<username>/.dotfiles/user
+    files in '~<username>/.dotfiles/user/'.
 
 for sys:
 0. the following assumed to be set up by now (all from arch install guide):

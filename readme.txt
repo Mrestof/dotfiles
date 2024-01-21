@@ -47,7 +47,8 @@ for users (root, mrestof):
 1. config neovim:
   1. get package manager: 'https://github.com/wbthomason/packer.nvim'
   2. add personal configs to '~/.config/nvim/'
-1. config audio. [d]
+1. config audio.
+  1. Installation of all relevant packages and a reboot should be enough.
 1. config bluetooth: [u]
   1. install bluetooth: 'https://wiki.archlinux.org/title/Bluetooth'
   2. add personal configs to ...
@@ -100,6 +101,7 @@ pkgs I use: {{{
     asciinema irssi
     pyenv python-pudb
     fatresize
+    pipewire wireplumber pipewire-audio pipewire-alsa pipewire-pulse alsa-utils pulsemixer
     imagemagick ffmpeg
     bat duf btop
     sway swaylock swaybg bemenu foot libnotify dunst jq slurp grim swappy wf-recorder wl-clipboard qutebrowser

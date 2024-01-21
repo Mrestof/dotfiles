@@ -26,7 +26,7 @@ for sys:
   - remove bash configs
   - create dir for user-level logs: '.local/log/'
   - create all home dirs and appropriate user-dirs file
-1. add personal issue: [u]
+1. add personal issue:
   '/etc/issue'
 1. config zsh:
   1. get grml-zsh and place it in '/etc/zsh/zshrc'

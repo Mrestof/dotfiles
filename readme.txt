@@ -109,6 +109,7 @@ pkgs I use: {{{
     imagemagick ffmpeg
     bat duf btop
     sway swaylock swaybg bemenu foot libnotify dunst jq slurp grim swappy wf-recorder wl-clipboard qutebrowser
+    xorg-xwayland xorg-xeyes
     pass keepassxc
     gnome-themes-extra noto-fonts{,-emoji,-cjk}
     vimiv nsxiv swayimg zathura mpv playerctl

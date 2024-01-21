@@ -1,15 +1,14 @@
+# vi: filetype=gitconfig: noexpandtab:
+
 [user]
-	email = fotserm@gmail.com
+	email = mrestof@disroot.org
 	name = Mrestof
-	signingKey = DC83D1B5
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [interactive]
 	diffFilter = diff-so-fancy --patch
 [commit]
 	verbose = true
-[log]
-	showSignature = true
 
 [color]
 	ui = true

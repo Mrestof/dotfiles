@@ -47,7 +47,8 @@ for users (root, mrestof):
 1. config neovim:
   1. get package manager: 'https://github.com/wbthomason/packer.nvim'
   2. add personal configs to '~/.config/nvim/'
-1. config git: [d]
+1. config git:
+  1. add configs by adding include directive to '~/.config/git/config' file
 1. config lynx. [u]
 1. config audio.
   1. Installation of all relevant packages and a reboot should be enough.
@@ -95,7 +96,7 @@ pkgs I use: {{{
     lvm2
     base linux linux-firmware
     intel-ucode sof-firmware
-    grub efibootmgr networkmanager git man-db man-pages openssh
+    grub efibootmgr networkmanager git diff-so-fancy man-db man-pages openssh
     base-devel devtools gdb
     brightnessctl libpulse
     vi vim neovim moreutils entr tmux zsh zsh-completions fzf ripgrep bpython lynx archlinux-contrib pacman-contrib pkgstats reflector xdg-user-dirs progress ncdu tree translate-shell eza htop vifm ranger p7zip xz

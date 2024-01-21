@@ -47,6 +47,8 @@ for users (root, mrestof):
 1. config neovim:
   1. get package manager: 'https://github.com/wbthomason/packer.nvim'
   2. add personal configs to '~/.config/nvim/'
+1. config git: [d]
+1. config lynx. [u]
 1. config audio.
   1. Installation of all relevant packages and a reboot should be enough.
 1. config bluetooth: [u]

@@ -47,6 +47,7 @@ for users (root, mrestof):
 1. config neovim:
   1. get package manager: 'https://github.com/wbthomason/packer.nvim'
   2. add personal configs to '~/.config/nvim/'
+1. config audio. [d]
 1. config bluetooth: [u]
   1. install bluetooth: 'https://wiki.archlinux.org/title/Bluetooth'
   2. add personal configs to ...
@@ -81,10 +82,7 @@ TODO:
 change:
   keepassxc: use another tool, or fix behaviour of this one
 new:
-  unsure:
-    sound: setup, configs
   user:
-    sway: configs
     btop: configs
     xgd: mimeapps
 

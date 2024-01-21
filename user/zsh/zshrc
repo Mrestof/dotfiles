@@ -1,6 +1,5 @@
 # TODO:
 #   high prio:
-#   - fix nethack path (no xdg on some systems)
 #   - fix bat configs (batcat instead of bat on some systems)
 #   - better categorize the exported variables and aliases
 #   - apply program settings only when it is appropriate

@@ -97,9 +97,18 @@ input type:touchpad {
 # input "0:1:AT_Translated_Set_2_keyboard" xkb_model "pc101"
 # input "1:1:AT_Translated_Set_2_keyboard" repeat_delay 180
 # input "1:1:AT_Translated_Set_2_keyboard" repeat_rate 30
+
 input type:keyboard {
   xkb_layout "us,ru,ua"
   xkb_options "grp:shifts_toggle,caps:swapescape"
+  xkb_model "pc101"
+  repeat_delay 180
+  repeat_rate 30
+}
+
+input 1241:662:USB-HID_Keyboard {
+  xkb_layout "us,ru,ua"
+  xkb_options "grp:shifts_toggle,caps:swapescape,ctrl:swap_rwin_rctl,ctrl:swap_lwin_lctl"
   xkb_model "pc101"
   repeat_delay 180
   repeat_rate 30

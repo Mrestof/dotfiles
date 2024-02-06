@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+# Author: Mrestof
+
+# Allows to skip ads in a very easy way if two prerequisites are present:
+#   1. This command is bound to a key combination.
+#   2. Spotify is configured to launch on background.
+# For example on Sway WM one would add the following in his configs:
+#   `assign [instance="spotify"] workspace =`
+#   `bindsym --locked $mod+shift+p exec restart-spotify`
+
+killall -KILL spotify
+spotify-launcher
+sleep 0.5
+playerctl play

@@ -22,6 +22,9 @@ for sys:
   - update files database with `pacman -Fy`
 1. add personal systemd logind conf for correct sleep behaviour:
   '/etc/systemd/logind.conf.d/'
+1. config bluetooth:
+  1. add personal configs to '/etc/bluetooth/main.conf'
+  2. install bluetooth: 'https://wiki.archlinux.org/title/Bluetooth'
 1. change skel (auto):
   - remove bash configs
   - create dir for user-level logs: '.local/log/'
@@ -52,9 +55,6 @@ for users (root, mrestof):
 1. config lynx. [u]
 1. config audio.
   1. Installation of all relevant packages and a reboot should be enough.
-1. config bluetooth: [u]
-  1. install bluetooth: 'https://wiki.archlinux.org/title/Bluetooth'
-  2. add personal configs to ...
 1. config sway:
   1. add configs by adding include directive to '~/.config/sway/config' file
   1. use bins from dotfiles
@@ -84,10 +84,12 @@ for users (root, mrestof):
 
 TODO:
 change:
+  vifm: describe in docs
+  sway: make a better config
+  bluetooth: find a way to use include directive
   keepassxc: use another tool, or fix behaviour of this one
 new:
   user:
-    sway: make a better config
     btop: configs
     xgd: mimeapps
 

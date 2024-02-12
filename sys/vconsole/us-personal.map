@@ -53,6 +53,10 @@ keycode  58 = Caps_Lock
 keycode  86 = less             greater          bar
 keycode  97 = Control
 
-# personal changes, overwriting the default us.map copied above
+# personal changes, overwriting the default us.map copied above:
+# swapescape
 keycode 1 = Caps_Lock
 keycode 58 = Escape
+# map win keys to controls
+keycode 125 = Control
+keycode 126 = Control

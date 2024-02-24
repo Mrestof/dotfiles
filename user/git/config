@@ -4,7 +4,7 @@
 	email = mrestof@disroot.org
 	name = Mrestof
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = diff-so-fancy | less --tabs=4 -RF -+X
 [interactive]
 	diffFilter = diff-so-fancy --patch
 [commit]

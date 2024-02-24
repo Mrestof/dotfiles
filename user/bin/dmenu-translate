@@ -23,11 +23,11 @@ fi
 echo $prev_layout_index
 
 if [[ $1 == 'en' ]]; then
-  swaymsg input 1:1:AT_Translated_Set_2_keyboard xkb_switch_layout 0
+  swaymsg input type:keyboard xkb_switch_layout 0
 elif [[ $1 == 'ru' ]]; then
-  swaymsg input 1:1:AT_Translated_Set_2_keyboard xkb_switch_layout 1
+  swaymsg input type:keyboard xkb_switch_layout 1
 elif [[ $1 == 'uk' ]]; then
-  swaymsg input 1:1:AT_Translated_Set_2_keyboard xkb_switch_layout 2
+  swaymsg input type:keyboard xkb_switch_layout 2
 fi
 
 choiceWord=$(bemenu -p "translate[$1:$2]:" </dev/null)
@@ -43,4 +43,4 @@ if [[ -n $choiceWord ]]; then
   fi
 fi
 
-swaymsg input 1:1:AT_Translated_Set_2_keyboard xkb_switch_layout $prev_layout_index
+swaymsg input type:keyboard xkb_switch_layout $prev_layout_index

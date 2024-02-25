@@ -1,2 +1,2 @@
 show-failed-attempts
-image=$(xdg-user-dir PICTURES)/walls/current-bg
+image=$(xdg-user-dir PICTURES)/walls/current-lock

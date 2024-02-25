@@ -1,5 +1,8 @@
-### Variables {{{
-#
+# Include this in your configs.
+# Variables to set before including:
+#   $defout - name of your main output monitor
+
+# Variables {{{
 # Logo key. Use Mod1 for Alt.
 set $mod Mod1
 # Home row direction keys, like vim
@@ -7,105 +10,56 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
-#set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu bemenu-run
-# my laptop's default output
-set $defout eDP-1
-### }}}
-### Output configuration {{{
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg "$(xdg-user-dir PICTURES)/walls/current" fill
-# output * bg "/home/mrestof/.cache/pacwall/pacwall.png" fit '#000000'
-
-# Default output
-#: output $defout resolution 1920x1080 position 0,1080
-output $defout resolution 1920x1080 position 0,0
-# home
-  # tv
-  output HDMI-A-1 {
-    mode 1920x1080@60Hz
-    position 5000,0
-    transform 270
-  }
-  # tv (trhough the adapter)
-  #output DP-1 scale 2
-  #output DP-1 mode 3840x2160@60Hz position 0,0
-# plvision
-  # plvision left monitor
-  #output DP-1 resolution 1920x1080 position 1920,0
-  # plvision right monitor
-  #output HDMI-A-1 mode 1920x1080@60Hz position 0,0
-# headless
-  output HEADLESS-1 {
-    mode 1280x800
-    position 0,1080
-  }
-
-# archive {{{
-# Second monitor
-# (some fucking cringe tv monitor that can't display 16:9 input without fucking zooming in idk wtf is that shit)
-# output HDMI-A-1 resolution 1024x768 position 0,-768
 # }}}
 
-# Remove title bars from applications and make borders thinner
+# Output configuration {{{
+# wallpaper setup
+output * bg "$(xdg-user-dir PICTURES)/walls/current-bg" fill
+# default output
+output $defout {
+  mode 1920x1080
+  position 0,0
+}
+# font for title bars
 font Monocraft 5.5
+# Remove title bars from applications and make borders thinner
 default_border pixel 2
+# disable borders when possible
 smart_borders on
-
 # Make pinentry-qt a floating window by default
 for_window [app_id="pinentry-qt"] floating enable
 # Make a Tk window with name "%floating%" float
 for_window [class="Tk" title="%floating%"] floating enable
-### }}}
-### Idle configuration {{{
-# Lock and turn off the screen after 5 minutes of inactivity
-# Also lock right before going to sleep
-exec swayidle -w \
-  timeout 300 'swaylock --config=$DOTROOT/user/sway/lock-config -f' \
-  timeout 305 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock --config=$DOTROOT/user/sway/lock-config -f'
+# }}}
 
-# Don't lock the screen if any app is in fullscreen
-for_window [shell=".*"] inhibit_idle fullscreen
-
-# Don't lock the screen if qutebrowser is in fullscreen
-# (personally I watch videos only in this mode while inactive)
-# for_window [app_id="org.qutebrowser.qutebrowser"] inhibit_idle fullscreen
-# for_window [class="Chromium"] inhibit_idle fullscreen
-# for_window [class="gzdoom"] inhibit_idle fullscreen
-# for_window [class="Minecraft*"] inhibit_idle fullscreen
-# for_window [class="isaac-ng.exe"] inhibit_idle fullscreen
-# for_window [class="steam_app_*"] inhibit_idle fullscreen
-### }}}
-### Input configuration {{{
+# Input configuration {{{
+# general devices: {{{
 input type:touchpad {
   dwt enabled
   tap enabled
   middle_emulation disabled
   natural_scroll enable
 }
-
-#input * {
-#    xkb_layout "us,ru,ua"
-#    xkb_options "grp:shifts_toggle,caps:swapescape"
-#}
-# input "0:1:AT_Translated_Set_2_keyboard" xkb_model "pc101"
-# input "1:1:AT_Translated_Set_2_keyboard" repeat_delay 180
-# input "1:1:AT_Translated_Set_2_keyboard" repeat_rate 30
-
-input type:keyboard {
+# drawing tablet
+input type:tablet_tool {
+  map_to_output $defout
+}
+# }}}
+# specific devices: {{{
+# thinkpad E15 Gen 4 builtin keyboard
+input 1:1:AT_Translated_Set_2_keyboard {
   xkb_layout "us,ru,ua"
   xkb_options "grp:shifts_toggle,caps:swapescape"
   xkb_model "pc101"
   repeat_delay 180
   repeat_rate 30
 }
-
+# external Funkey mechanical keyboard
 input 1241:662:USB-HID_Keyboard {
   xkb_layout "us,ru,ua"
   xkb_options "grp:shifts_toggle,caps:swapescape,ctrl:swap_rwin_rctl,ctrl:swap_lwin_lctl"
@@ -113,54 +67,62 @@ input 1241:662:USB-HID_Keyboard {
   repeat_delay 180
   repeat_rate 30
 }
-
+# virtual wayvnc keyboard
+input 0:0:wlr_virtual_keyboard_v {
+  xkb_layout "us,ru,ua"
+  xkb_options "grp:shifts_toggle,caps:swapescape"
+  xkb_model "pc101"
+  repeat_delay 180
+  repeat_rate 30
+}
+# external Ergo mouse
 input 1133:49271:Logitech_USB_Optical_Mouse {
   accel_profile "flat"
   pointer_accel 0
 }
-
-# configure the drawing tablet
-input type:tablet_tool {
-  map_to_output $defout
-}
-
+# disable touchpad usage as mouse, works correctly in games: {{{
+# DS4
 input 1356:1476:Sony_Computer_Entertainment_Wireless_Controller_Touchpad {
   events disabled
 }
-
+# wireless DS4
+input 1356:1476:Wireless_Controller_Touchpad {
+  events disabled
+}
+# }}}
+# }}}
 # try to disable the primary clipboard (more precisely, disable middle click pasting)
 exec wl-paste --primary --watch wl-copy --primary --clear
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-### }}}
-### Key bindings {{{
-# Basics: {{{
-  # Start a terminal
-  bindsym $mod+Return exec $TERMCMD
+# }}}
 
+# Idle configuration {{{
+# Lock and turn off the screen after 5 minutes of inactivity
+# Also lock right before going to sleep
+exec swayidle -w \
+  timeout 300 'swaylock --config=$DOTROOT/user/sway/lock-config -f' \
+  timeout 305 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock --config=$DOTROOT/user/sway/lock-config -f'
+# Don't lock the screen if any app is in fullscreen
+for_window [shell=".*"] inhibit_idle fullscreen
+# }}}
+
+# Key bindings {{{
+# Basics: {{{
   # Kill focused window
   bindsym --no-repeat $mod+Shift+q kill
-
   # Start your launcher
   bindsym $mod+d exec $menu
-
   # Drag floating windows by holding down $mod and left mouse button.
   # Resize them with right mouse button + $mod.
   # Despite the name, also works for non-floating windows.
   # Change normal to inverse to use left mouse button for resizing and right
   # mouse button for dragging.
   floating_modifier $mod normal
-
   # Reload the configuration file
   bindsym $mod+Shift+c reload
-
   # Exit sway (logs you out of your Wayland session)
   bindsym $mod+Shift+Delete exec 'swaymsg exit'
-
-  # Take a screenshot and place it into clipboard
-  #bindsym --no-repeat Print exec grim -g "$(slurp)" - |wl-copy
-  #bindsym --no-repeat shift+Print exec grim -g "$(slurp)" - |swappy -f - -o - |wl-copy
-  #bindsym --no-repeat $mod+Print exec wl-paste |swappy -f - -o - |wl-copy
+  # calls to local binaries
   bindsym --no-repeat Print             exec prntscr simple
   bindsym --no-repeat shift+Print       exec prntscr full
   bindsym --no-repeat $mod+Print        exec prntscr clip_edit
@@ -170,11 +132,12 @@ exec wl-paste --primary --watch wl-copy --primary --clear
 # Security: {{{
   # Lock the screen (configure the appearance in `~/.config/sway/lock-config`)
   bindsym --no-repeat XF86Favorites exec swaylock --config=$DOTROOT/user/sway/lock-config
-
   # Execute the password manager
   bindsym $mod+m exec BEMENU_OPTS="$BEMENU_OPTS -p 'pass:'" passmenu
 # }}}
 # App launching: {{{
+  # Start a terminal
+  bindsym $mod+Return exec $TERMCMD
   # Execute qutebrowser with specified session (only if no other instance of qutebrowser is present)
   bindsym $mod+q exec dmenu-qute-open-session
   bindsym $mod+ctrl+q exec qutebrowser $WWW_HOME
@@ -200,7 +163,8 @@ bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-t
   bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
   bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
   bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-
+  bindsym --to-code --locked $mod+shift+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+  bindsym --locked XF86Calculator exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
   # mpd control via mpc
   #bindsym --to-code --locked $mod+p exec mpc toggle
   #bindsym --to-code --locked $mod+comma exec mpc prev
@@ -214,7 +178,6 @@ bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-t
   bindsym --to-code --locked $mod+period       exec playerctl next
   bindsym --to-code --locked $mod+bracketleft  exec playerctl position 5-
   bindsym --to-code --locked $mod+bracketright exec playerctl position 5+
-
   # bind media keys (ex: for bluetooth headphones)
   bindsym --locked XF86AudioPlay    exec playerctl play-pause
   bindsym --locked XF86AudioPrev    exec playerctl previous
@@ -231,29 +194,31 @@ bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-t
 # }}}
 # Moving around: {{{
   # Move your focus around
-  bindsym --to-code $mod+$left focus left
-  bindsym --to-code $mod+$down focus down
-  bindsym --to-code $mod+$up focus up
-  bindsym --to-code $mod+$right focus right
-
+  bindsym --to-code --no-repeat $mod+$left focus left
+  bindsym --to-code --no-repeat $mod+$down focus down
+  bindsym --to-code --no-repeat $mod+$up focus up
+  bindsym --to-code --no-repeat $mod+$right focus right
+  # Move your focus between screens
+  bindsym --to-code --no-repeat $mod+y focus output left
+  bindsym --to-code --no-repeat $mod+u focus output down
+  bindsym --to-code --no-repeat $mod+i focus output up
+  bindsym --to-code --no-repeat $mod+o focus output right
   # Move the focused window
-  bindsym --to-code $mod+Shift+$left move left
-  bindsym --to-code $mod+Shift+$down move down
-  bindsym --to-code $mod+Shift+$up move up
-  bindsym --to-code $mod+Shift+$right move right
-
+  bindsym --to-code --no-repeat $mod+Shift+$left move left
+  bindsym --to-code --no-repeat $mod+Shift+$down move down
+  bindsym --to-code --no-repeat $mod+Shift+$up move up
+  bindsym --to-code --no-repeat $mod+Shift+$right move right
   # Move the focused workspace
-  bindsym --to-code $mod+Ctrl+$left move workspace to output left
-  bindsym --to-code $mod+Ctrl+$down move workspace to output down
-  bindsym --to-code $mod+Ctrl+$up move workspace to output up
-  bindsym --to-code $mod+Ctrl+$right move workspace to output right
+  bindsym --to-code --no-repeat $mod+Ctrl+$left move workspace to output left
+  bindsym --to-code --no-repeat $mod+Ctrl+$down move workspace to output down
+  bindsym --to-code --no-repeat $mod+Ctrl+$up move workspace to output up
+  bindsym --to-code --no-repeat $mod+Ctrl+$right move workspace to output right
 # }}}
 # Workspaces: {{{
   # just see the manpage to see why it's handy to have (man 5 sway)
   workspace_auto_back_and_forth yes
-
   # Switch to workspace
-  # default 1-10 {{{
+  # 1-10 {{{
     bindsym --no-repeat $mod+1 workspace number 1
     bindsym --no-repeat $mod+2 workspace number 2
     bindsym --no-repeat $mod+3 workspace number 3
@@ -265,7 +230,7 @@ bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-t
     bindsym --no-repeat $mod+9 workspace number 9
     bindsym --no-repeat $mod+0 workspace number 10
   # }}}
-  # custom {{{
+  # 1a-10a: {{{
     # additional workspasec to separate work of similar theme by two screens
     bindsym --no-repeat $mod+ctrl+1 workspace 1a
     bindsym --no-repeat $mod+ctrl+2 workspace 2a
@@ -277,13 +242,13 @@ bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-t
     bindsym --no-repeat $mod+ctrl+8 workspace 8a
     bindsym --no-repeat $mod+ctrl+9 workspace 9a
     bindsym --no-repeat $mod+ctrl+0 workspace 10a
-
+  # }}}
+  # custom {{{
     # for some background stuff
     bindsym --no-repeat $mod+equal workspace =
   # }}}
-
   # Move focused container to workspace
-  # default 1-10 {{{
+  # 1-10 {{{
     bindsym --no-repeat $mod+Shift+1 move container to workspace number 1
     bindsym --no-repeat $mod+Shift+2 move container to workspace number 2
     bindsym --no-repeat $mod+Shift+3 move container to workspace number 3
@@ -295,7 +260,7 @@ bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-t
     bindsym --no-repeat $mod+Shift+9 move container to workspace number 9
     bindsym --no-repeat $mod+Shift+0 move container to workspace number 10
   # }}}
-  # custom {{{
+  # 1a-10a: {{{
     # additional workspasec to separate work of similar theme by two screens
     bindsym --no-repeat $mod+ctrl+shift+1 move container to workspace 1a
     bindsym --no-repeat $mod+ctrl+shift+2 move container to workspace 2a
@@ -307,7 +272,8 @@ bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-t
     bindsym --no-repeat $mod+ctrl+shift+8 move container to workspace 8a
     bindsym --no-repeat $mod+ctrl+shift+9 move container to workspace 9a
     bindsym --no-repeat $mod+ctrl+shift+0 move container to workspace 10a
-
+  # }}}
+  # custom {{{
     # for some background stuff
     bindsym --no-repeat $mod+Shift+equal move container to workspace =
   # }}}
@@ -318,65 +284,51 @@ bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-t
   # respectively.
   bindsym $mod+b splith
   bindsym $mod+v splitv
-
   # Switch the current container between different layout styles
   bindsym $mod+s layout stacking
   bindsym $mod+w layout tabbed
   bindsym $mod+e layout toggle split
-
   # Make the current focus fullscreen
   bindsym --to-code $mod+f fullscreen
   bindsym --to-code $mod+shift+f fullscreen global
-
   # Toggle the current focus between tiling and floating mode
   bindsym $mod+Shift+space floating toggle
-
   # Swap focus between the tiling area and the floating area
   bindsym $mod+space focus mode_toggle
-
   # Toggle stickiness
-  bindsym --to-code $mod+o sticky toggle
-
+  bindsym --to-code $mod+ctrl+s sticky toggle
   # Move focus to the parent container
   bindsym --to-code $mod+a focus parent
   bindsym --to-code $mod+z focus child
-
+  # rotate defout
   bindsym --to-code $mod+r output $defout transform 90 clockwise
   bindsym --to-code $mod+shift+r output $defout transform 90 anticlockwise
 # }}}
 # Scratchpad: {{{
-  # Sway has a "scratchpad", which is a bag of holding for windows.
-  # You can send windows there and get them back later.
-
   # Move the currently focused window to the scratchpad
   bindsym $mod+Shift+minus move scratchpad
-
   # Show the next scratchpad window or hide the focused scratchpad window.
   # If there are multiple scratchpad windows, this command cycles through them.
   bindsym $mod+minus scratchpad show
 # }}}
 # Resizing containers: {{{
-  # bindsym $mod+Shift+y resize shrink width 10px
-  # bindsym $mod+Shift+u resize grow height 10px
-  # bindsym $mod+Shift+i resize shrink height 10px
-  # bindsym $mod+Shift+o resize grow width 10px
-  bindsym --to-code $mod+Shift+y exec sway-resize left
-  bindsym --to-code $mod+Shift+u exec sway-resize down
-  bindsym --to-code $mod+Shift+i exec sway-resize up
-  bindsym --to-code $mod+Shift+o exec sway-resize right
+  bindsym --to-code $mod+shift+y exec sway-resize left
+  bindsym --to-code $mod+shift+u exec sway-resize down
+  bindsym --to-code $mod+shift+i exec sway-resize up
+  bindsym --to-code $mod+shift+o exec sway-resize right
+  bindsym --to-code $mod+ctrl+y exec sway-resize left 300px
+  bindsym --to-code $mod+ctrl+u exec sway-resize down 300px
+  bindsym --to-code $mod+ctrl+i exec sway-resize up 300px
+  bindsym --to-code $mod+ctrl+o exec sway-resize right 300px
 # }}}
-### }}}
-### Status Bar {{{
+# }}}
+
+# Status Bar {{{
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-  #output $defout
   position top
   font Monocraft 7
-
-  # When the status_command prints a new line to stdout, swaybar updates.
-  # The default just shows the current date and time.
   status_command while echo $($DOTROOT/user/bin/statusbar/battery) $(date +'%Y-%m-%d %H:%M:%S'); do sleep 1; done
-
   colors {
       statusline #ffffff
       background #000000
@@ -384,8 +336,9 @@ bar {
   }
 }
 # }}}
-### Autostart {{{
+
+# Autostart {{{
 exec lxqt-policykit-agent
-#}}}
+# }}}
 
 include /etc/sway/config.d/*

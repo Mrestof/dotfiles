@@ -6,7 +6,7 @@
 
 [ -z "$1" ] && echo "No direction provided" && exit 1
 # distanceStr="2 px or 2 ppt"
-distanceStr="10px"
+distanceStr="${2:-10px}"
 
 moveChoice() {
   swaymsg resize "$1" "$2" "$distanceStr" | grep '"success": true' || \

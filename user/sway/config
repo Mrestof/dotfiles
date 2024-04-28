@@ -184,6 +184,11 @@ bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-t
   bindsym --locked XF86AudioNext    exec playerctl next
   bindsym --locked XF86AudioRewind  exec playerctl position 5-
   bindsym --locked XF86AudioForward exec playerctl position 5+
+
+  # allow easy spotify restart on background
+  assign [instance="spotify"] workspace =
+  bindsym --locked $mod+shift+p exec restart-spotify
+
   # prepare drag-n-drop of a music by search
   bindsym $mod+shift+s exec dmenu-dnd-song
 # }}}

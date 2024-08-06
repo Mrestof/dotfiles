@@ -23,7 +23,7 @@ output * bg "$(xdg-user-dir PICTURES)/walls/current-bg" fill
 # default output
 output $defout {
   mode 1920x1080
-  position 10000,10000
+  position 0,0
 }
 # font for title bars
 font Monocraft 5.5

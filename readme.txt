@@ -15,7 +15,6 @@ for sys:
 1. add dotfiles with personal configs:
   suggested directory: '/etc/dotfiles'
 1. add personal edited keymap for linux console, edit following files:
-  '/usr/local/share/kbd/keymaps/us-personal.map'
   '/etc/vconsole.conf'
 1. pacman:
   - add configs by adding `Include=<custom_conf>` to 'etc/pacman.conf' file

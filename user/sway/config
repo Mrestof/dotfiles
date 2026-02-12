@@ -160,6 +160,7 @@ for_window [shell=".*"] inhibit_idle fullscreen
 # App launching: {{{
   # Start a terminal
   bindsym $mod+Return exec $TERMCMD
+  bindsym $mod+shift+Return exec foot -o font='monocraft:size=10.5'
   # Execute qutebrowser with specified session (only if no other instance of qutebrowser is present)
   bindsym $mod+q exec dmenu-qute-open-session
   bindsym $mod+ctrl+q exec qutebrowser $WWW_HOME

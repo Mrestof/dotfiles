@@ -26,6 +26,13 @@ return require('packer').startup {
               crust = "#000000",
             },
           },
+          highlight_overrides = {
+            mocha = function(C)
+              return {
+                WinSeparator = { fg = C.surface1 },
+              }
+            end,
+          },
         }
       vim.cmd.colorscheme "catppuccin"
       end,

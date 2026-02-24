@@ -1,0 +1,8 @@
+#!/bin/env bash
+
+if [ "$(acpi --b | awk -F'[,%]' '{print $2}')" -lt 10 ]
+then
+  swaymsg bar bar-0 colors background '#00000000'
+else
+  swaymsg bar bar-0 colors background '#000000ff'
+fi

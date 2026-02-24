@@ -367,6 +367,7 @@ bar {
 # }}}
 
 # Autostart {{{
+exec sh -c 'while : ; do sway-bar-reflect-battery-status; sleep 60; done'
 exec lxqt-policykit-agent
 exec nextcloud
 # }}}

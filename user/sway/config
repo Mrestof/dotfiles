@@ -368,6 +368,7 @@ bar {
 
 # Autostart {{{
 exec lxqt-policykit-agent
+exec nextcloud
 # }}}
 
 include /etc/sway/config.d/*

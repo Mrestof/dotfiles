@@ -175,6 +175,8 @@ for_window [shell=".*"] inhibit_idle fullscreen
   bindsym --to-code $mod+shift+t exec swaymsg "fullscreen disable" && dmenu-translate ru en
   bindsym --to-code $mod+ctrl+t exec swaymsg "fullscreen disable" && dmenu-translate ru uk
   bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-translate uk ru
+  # open a user selected pdf
+  bindsym $mod+shift+b exec dmenu-open-pdf
 # }}}
 # Brightness control: {{{
   bindsym --inhibited --locked XF86MonBrightnessDown exec brightnessctl set 5%-

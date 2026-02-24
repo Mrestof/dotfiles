@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+dir=$HOME
+pdf_filenames=()
+readarray -d '' pdf_filenames < <(fd . "$dir" --extension=pdf)
+
+# TODO: make the search case ignored (-i doesn't work with cyrillic)
+pdf_filename=$(printf '%s\n' "${pdf_filenames[@]}" |bemenu -p'open-pdf:' -W1)
+
+if [[ -z "$pdf_filename" ]]; then
+  echo 'no filename selected'
+else
+  echo $pdf_filename
+  zathura "$pdf_filename"
+fi

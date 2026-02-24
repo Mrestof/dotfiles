@@ -211,7 +211,7 @@ for_window [shell=".*"] inhibit_idle fullscreen
   bindsym --inhibited --locked XF86AudioForward exec playerctl position 5+
 
   # allow easy spotify restart on background
-  assign [instance="spotify"] workspace =
+  assign [app_id="spotify"] workspace =
   bindsym --locked $mod+shift+p exec restart-spotify
 
   # prepare drag-n-drop of a music by search

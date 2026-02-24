@@ -168,13 +168,13 @@ for_window [shell=".*"] inhibit_idle fullscreen
   bindsym $mod+shift+v exec virt-manager
 # }}}
 # Miscellaneous: {{{
-# Copy emoji from the list with dmenu
-bindsym $mod+grave exec dmenu-emoji
-# Execute the translation script with dmenu
-bindsym $mod+t exec swaymsg "fullscreen disable" && dmenu-translate en ru
-bindsym --to-code $mod+shift+t exec swaymsg "fullscreen disable" && dmenu-translate ru en
-bindsym --to-code $mod+ctrl+t exec swaymsg "fullscreen disable" && dmenu-translate ru uk
-bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-translate uk ru
+  # Copy emoji from the list with dmenu
+  bindsym $mod+grave exec dmenu-emoji
+  # Execute the translation script with dmenu
+  bindsym $mod+t exec swaymsg "fullscreen disable" && dmenu-translate en ru
+  bindsym --to-code $mod+shift+t exec swaymsg "fullscreen disable" && dmenu-translate ru en
+  bindsym --to-code $mod+ctrl+t exec swaymsg "fullscreen disable" && dmenu-translate ru uk
+  bindsym --to-code $mod+ctrl+shift+t exec swaymsg "fullscreen disable" && dmenu-translate uk ru
 # }}}
 # Brightness control: {{{
   bindsym --inhibited --locked XF86MonBrightnessDown exec brightnessctl set 5%-

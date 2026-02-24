@@ -119,8 +119,8 @@ exec wl-paste --primary --watch wl-copy --primary --clear
 # Lock and turn off the screen after 5 minutes of inactivity
 # Also lock right before going to sleep
 exec swayidle -w \
-  timeout 300 'swaylock --config=$DOTROOT/user/sway/lock-config -f' \
-  timeout 305 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+  timeout 14400 'swaylock --config=$DOTROOT/user/sway/lock-config -f' \
+  timeout 15000 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
   before-sleep 'swaylock --config=$DOTROOT/user/sway/lock-config -f'
 # Don't lock the screen if any app is in fullscreen
 for_window [shell=".*"] inhibit_idle fullscreen

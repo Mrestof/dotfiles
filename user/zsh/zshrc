@@ -78,6 +78,7 @@ alias df='df -h'
 alias ls='eza --group --classify --group-directories-first --git'
 alias l='ls -lh'
 alias la='l -a'
+alias lt='l --tree'
 alias dnd='dragon-drop -x'
 alias auracle='auracle --sort=votes'
 

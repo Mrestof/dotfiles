@@ -65,7 +65,7 @@ return require('packer').startup {
           options = {
             padding = 1,
             icons_enabled = false,
-            theme = 'catppuccin',
+            theme = 'catppuccin-nvim',
             component_separators = '│',
             section_separators = '',
             globalstatus = false,  -- but can be enabled
@@ -115,16 +115,19 @@ return require('packer').startup {
     use { 'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
       config = function()
-        require('nvim-treesitter.configs').setup {
-          ensure_installed = {
-            "c", "lua", "vim", -- ?"help",  -- default languages (must be enabled)
-            "python"  -- personal choice
-          },
-          auto_install = true,
-          ignore_install = {'ada'}, -- don't load for .adb (large adabe files)
-          highlight = {enable=true},
-          incremental_selection = {enable=true},
-        }
+        require('nvim-treesitter').install({
+          'c', 'lua', 'vim', 'vimdoc',
+          'python',
+        })
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = '*',
+          callback = function(args)
+            if vim.bo[args.buf].filetype == "ada" then
+              return
+            end
+            pcall(vim.treesitter.start, args.buf)
+          end,
+        })
       end,
     }
     --use { 'nvim-treesitter/nvim-treesitter-context',

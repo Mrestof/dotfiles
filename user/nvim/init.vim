@@ -69,6 +69,13 @@
     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   augroup end
 " }}}
+" Markdown: {{{
+  augroup markdown_settings
+    autocmd!
+    " prose-friendly line handling
+    autocmd FileType markdown setlocal nowrap
+  augroup end
+" }}}
 " Abbreviations: {{{
   iabbrev <expr> dts strftime("%Y-%m-%d")
 " }}}

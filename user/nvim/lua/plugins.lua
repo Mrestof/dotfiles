@@ -43,21 +43,21 @@ return require('packer').startup {
         require("todo-comments").setup()
       end
     }
-    use {'akinsho/bufferline.nvim',
-      tag = "v3.*",
-      after = 'catppuccin',
-      requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-      config = function ()
-        require('bufferline').setup {
-          options = {
-            show_buffer_close_icons = false,
-          },
-          highlights = require(
-            "catppuccin.groups.integrations.bufferline"
-          ).get()
-        }
-      end
-    }
+    -- use {'akinsho/bufferline.nvim',
+    --   tag = "v3.*",
+    --   after = 'catppuccin',
+    --   requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    --   config = function ()
+    --     require('bufferline').setup {
+    --       options = {
+    --         show_buffer_close_icons = false,
+    --       },
+    --       highlights = require(
+    --         "catppuccin.groups.integrations.bufferline"
+    --       ).get()
+    --     }
+    --   end
+    -- }
     use { 'nvim-lualine/lualine.nvim',
       requires = { 'nvim-tree/nvim-web-devicons', opt = true },
       config = function()
@@ -127,19 +127,25 @@ return require('packer').startup {
         }
       end,
     }
-    use { 'nvim-treesitter/nvim-treesitter-context',
-      config = function ()
-        require('treesitter-context').setup {
-          mode='topline'
-        }
-      end
-    }
+    --use { 'nvim-treesitter/nvim-treesitter-context',
+      --config = function ()
+        --require('treesitter-context').setup {
+          --mode='topline'
+        --}
+      --end
+    --}
     use { 'neovim/nvim-lspconfig',
+      version = 'v1.8.0',
       requires = {
         -- automatically install LSPs to stdpath for neovim
-        {'williamboman/mason.nvim', config = function() require('mason').setup() end},
-        'williamboman/mason-lspconfig.nvim',
+        {'williamboman/mason.nvim', config = function() require('mason').setup() end, version = 'v1.11.0'},
+        {'williamboman/mason-lspconfig.nvim', version = 'v1.32.0'}
       }
+    }
+    use { "stevearc/conform.nvim",
+      config = function()
+        require("conform").setup()
+      end,
     }
     use { 'hrsh7th/nvim-cmp',
       requires = {
@@ -202,6 +208,17 @@ return require('packer').startup {
     }
     -- almost code
     use 'lervag/vimtex'
+
+    -- markdown
+    use { 'dhruvasagar/vim-table-mode',
+      ft = {'markdown', 'text'},
+      config = function()
+        -- use pipe corners to stay GFM-compatible (not '+' which is RST style)
+        vim.g.table_mode_corner = '|'
+        -- disable syntax highlighting component (main source of lag on large tables)
+        vim.g.table_mode_syntax = 0
+      end
+    }
 
     -- file management tools
     use { 'nvim-telescope/telescope.nvim',

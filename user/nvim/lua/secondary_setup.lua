@@ -9,6 +9,7 @@ vim.keymap.set('n', '<leader>ff', tele_builtin.find_files, {})
 vim.keymap.set('n', '<leader>fF', function()
   tele_builtin.find_files({hidden=true, no_ignore=true})
 end, {})
+vim.keymap.set('n', '<leader>fm', tele_builtin.man_pages, {})
 vim.keymap.set('n', '<leader>fb', tele_builtin.buffers, {})
 vim.keymap.set('n', '<leader>fS', tele_builtin.lsp_document_symbols, {})
 vim.keymap.set('n', '<leader>fr', tele_builtin.lsp_references, {})
@@ -44,6 +45,9 @@ require('telescope').setup{
   pickers = {
     find_files = {
       follow=true,  -- follow symlinks
+    },
+    man_pages = {
+      sections = {'ALL'},
     },
     -- live_grep = { theme = 'ivy' },
     -- buffers = { theme = 'ivy' },

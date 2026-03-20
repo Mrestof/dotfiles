@@ -60,11 +60,12 @@ local servers = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
-      diagnostics = { globals = {'vim'} }
+      diagnostics = { globals = {'vim', 'love'} }
     },
   },
   clangd = {},
   pyright = {},
+  ruff = {},
   vimls = {
     initializationOptions = {
       isNeovim = true, -- is neovim, default false
@@ -86,6 +87,18 @@ local servers = {
   rust_analyzer = {},
 }
 
+require('conform').setup({
+  formatters_by_ft = {
+    python = { 'isort' },
+  }
+})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
+
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -96,19 +109,18 @@ require('mason').setup()
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
+--mason_lspconfig.setup {
+--  ensure_installed = vim.tbl_keys(servers),
+--}
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    }
-  end,
-}
+for server_name, server_settings in pairs(servers) do
+  vim.lsp.config(server_name, {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = server_settings,
+  })
+  vim.lsp.enable(server_name)
+end
 
 -- nvim-cmp setup
 local cmp = require 'cmp'

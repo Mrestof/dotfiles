@@ -95,6 +95,7 @@ return require('packer').startup {
       end
     }
     use { 'NvChad/nvim-colorizer.lua',
+      commit = "85a5e83",  -- FIX: temporary fix due to upstream bug
       config = function()
         require('colorizer').setup {
           user_default_options = {RRGGBBAA = true}

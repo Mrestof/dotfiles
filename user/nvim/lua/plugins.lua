@@ -113,6 +113,7 @@ return require('packer').startup {
     -- code tools
     -- TODO: learn about nvim-treesitter-textobjects and add it
     use { 'nvim-treesitter/nvim-treesitter',
+      branch = 'main',
       run = ':TSUpdate',
       config = function()
         require('nvim-treesitter').install({

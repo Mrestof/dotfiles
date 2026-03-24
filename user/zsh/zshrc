@@ -13,6 +13,10 @@
 # root of dotfiles, wherever they may roam, use from other scripts if needed
 export DOTROOT="${0:h:h:h}"
 
+# completions
+fpath=(~/.zsh/completions $fpath)
+autoload -Uz compinit && compinit
+
 # fix all sudo aliases
 alias sudo='sudo '
 

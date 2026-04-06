@@ -139,4 +139,6 @@
 " GUI {{{
   " set this explicitly for nvim-colorizer
   set termguicolors
+  " set default clipboard to unnamedplus (OS's clipboard)
+  set clipboard=unnamedplus
 " }}}

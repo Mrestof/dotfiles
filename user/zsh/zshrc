@@ -142,6 +142,8 @@ j() {
 
 
 if [[ -n $LAUNCH_CMD ]]; then
-  eval "$LAUNCH_CMD"
+  _lc="$LAUNCH_CMD"
   unset LAUNCH_CMD
+  eval "$_lc"
+  unset _lc
 fi
